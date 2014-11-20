@@ -1,6 +1,94 @@
-<!DOCTYPE html>
 <html>
-  <body>
-    hey
-  </body>
+
+<head>
+  <title>Webpage!</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+  <link rel="stylesheet" type="text/css" href="/global.css"/>
+</head>
+
+<body>
+  <div id="trainTarget">
+  </div>
+  <div id="busTarget">
+  </div>
+
+  <script id="entry-template" type="text/x-handlebars-template">
+    <div class="container train">
+      <table>
+        <tr>
+          <th>Line</th>
+          <th>Destination</th>
+          <th>Min</th>
+        </tr>
+        {{#each Trains}}
+        <tr class="train">
+          <td ><span class="circle circle-{{Line}}">{{Line}}</span></td>
+          <td class="dest">{{DestinationName}}</td>
+          <td class="time">{{Min}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+  </script>
+  <script id="bus-template" type="tex/x-handlebars-template">
+    <div class="container bus">
+    <table>
+      <tr>
+        <th>Route</th>
+        <th>Destination</th>
+        <th>Min</th>
+      </tr>
+    {{#each this}}
+      {{#each Predictions}}
+        <tr>
+        <td><span class="route route-{{RouteID}}">{{RouteID}}</span></td>
+        <td>{{DirectionText}}</td>
+        <td>{{Minutes}}</td>
+        </tr>
+      {{/each}}
+    {{/each}}
+    </table>
+    </div>
+  </script>
+
+  <script>
+    function getTrainData() {
+
+      $.ajax({
+        url: "/ajax/train",
+        method: "GET",
+        success: function(data) {
+          $("#trainTarget").html(trainTemplate(data))
+        }
+      })
+
+    }
+
+    function getBusData() {
+
+      $.ajax({
+        url: "/ajax/bus",
+        method: "GET",
+        success: function(data) {
+          console.log(data)
+          $("#busTarget").html(busTemplate(data))
+        }
+      })
+    }
+
+    var source = $("#entry-template").html()
+    var trainTemplate = Handlebars.compile(source)
+    var busTemplate = Handlebars.compile($('#bus-template').html())
+
+    
+    getTrainData()
+    var interval = setInterval(getTrainData, 60000)
+
+    getBusData()
+    var interval = setInterval(getBusData, 60000)
+
+  </script>
+</body>
+
 </html>
