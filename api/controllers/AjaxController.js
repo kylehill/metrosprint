@@ -1,5 +1,28 @@
 var request = require("request")
 
+var warned = false;
+
+var keyGen = function() {
+  if (sails.config.WmataApiKeys) {
+    if (_.isArray(sails.config.WmataApiKeys)) {
+      return _.sample(sails.config.WmataApiKeys)
+    }
+    else {
+      return sails.config.WmataApiKeys
+    }
+  }
+  else {
+    if (!warned) {
+      sails.log.warn("Hey! You should sign up for a WMATA developer key and enter it in config/local.js.")
+      sails.log.warn("Instructions are in the README.md file.")
+      sails.log.warn("You're using a community demonstration key with low rate limits right now.")
+      warned = true
+    }
+    
+    return "qrc78gh5rrfhccxn3az498fa"
+  }
+}
+
 module.exports = {
 	
   train: function(req, res) {
@@ -8,9 +31,15 @@ module.exports = {
       res.json(data)
     }
     
+    var key = keyGen()    
+
     request({
-      url: "http://api.wmata.com/StationPrediction.svc/json/GetPrediction/B04?api_key=qrc78gh5rrfhccxn3az498fa",
-      json: true
+      url: "http://api.wmata.com/StationPrediction.svc/json/GetPrediction/B04",
+      json: true,
+      qs: {
+        "api_key": key,
+        "subscription-key": key
+      }
     }, callback)
     
   },
@@ -26,7 +55,7 @@ module.exports = {
     ]
 
     var iterator = function(stopId, itemCallback) {
-      var key = _.sample(sails.config.WmataApiKeys)
+      var key = keyGen()
       
       request({
         url: "http://api.wmata.com/NextBusService.svc/json/jPredictions",
