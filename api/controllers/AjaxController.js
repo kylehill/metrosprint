@@ -24,7 +24,7 @@ var keyGen = function() {
 }
 
 module.exports = {
-	
+  
   train: function(req, res) {
     
     var callback = function(err, body, data) {

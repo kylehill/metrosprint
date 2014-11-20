@@ -8,9 +8,9 @@
 </head>
 
 <body>
-  <div id="trainTarget">
+  <div class="trainTarget">
   </div>
-  <div id="busTarget">
+  <div class="busTarget">
   </div>
 
   <script id="entry-template" type="text/x-handlebars-template">
@@ -59,7 +59,7 @@
         url: "/ajax/train",
         method: "GET",
         success: function(data) {
-          $("#trainTarget").html(trainTemplate(data))
+          $(".trainTarget").html(trainTemplate(data))
         }
       })
 
@@ -72,7 +72,7 @@
         method: "GET",
         success: function(data) {
           console.log(data)
-          $("#busTarget").html(busTemplate(data))
+          $(".busTarget").html(busTemplate(data))
         }
       })
     }
