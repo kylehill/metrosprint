@@ -1,7 +1,7 @@
 var request = require("request")
 
 module.exports = {
-	
+  
   train: function(req, res) {
     
     var callback = function(err, body, data) {

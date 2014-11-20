@@ -1,25 +1,29 @@
 body {background-color: black;}
 
+.trainTarget, .busTarget {
+    display: inline-block;
+    margin-right: 30px;
+}
 .container table {
-	color: white;
-	display: inline-block;
-	font-family: Helvetica, sans-serif;
-	font-size: 30px;
-	margin-bottom: 30px;
-	text-align: center;
+    color: white;
+    display: inline-block;
+    font-family: Helvetica, sans-serif;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-align: center;
  }
 
 .container table td {padding: 5px;}
 
 .circle {
-	border-radius: 50%;
-	color: white;
-	display: inline-block;
-	font-size: 20px;
-	height: 38px;
-	line-height: 38px;
-	text-align: center;
-	width: 38px;
+    border-radius: 50%;
+    color: white;
+    display: inline-block;
+    font-size: 20px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    width: 38px;
  }
 
 .circle-RD {background: #bf0d3e;}
@@ -35,44 +39,44 @@ body {background-color: black;}
 .circle-SV {background: #919d9d;}
 
 .route {
-	border-radius: 8px;
-	color: white;
-	display: inline-block;
-	font-size: 20px;
-	height: 38px;
-	line-height: 38px;
-	text-align: center;
-	width: 38px;
+    border-radius: 8px;
+    color: white;
+    display: inline-block;
+    font-size: 20px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    width: 38px;
  }
 
  .route-81, .route-82, .route-83, .route-84, .route-86 {
-	background: #136175;
+    background: #136175;
  }
 
  .route-B8, .route-B9 {
- 	background: #5b435b;
+    background: #5b435b;
  }
 
 .route-D8 {
-	background: #ff7b15;
+    background: #ff7b15;
 }
 
 .route-H8, .route-H9 {
-	background: #60aa49;
+    background: #60aa49;
 }
 
 .route-P6 {
-	background: #470d38;
+    background: #470d38;
 }
 
 .route-T18 {
-	background: #db1522;
+    background: #db1522;
 }
 
 .route-M31 {
-	background: #d57454;
+    background: #d57454;
 }
 
 .route-S41 {
-	background: #555;
+    background: #555;
 }
